@@ -36,6 +36,21 @@ class MainActivity : DebugActivity() {
         val identifierValue = identifierLogin.text.toString()
         val passwordValue = passwordLogin.text.toString()
 
+//        val dataPost= "{\n" +
+//                "    \"identifier\": \"$identifierValue\",\n" +
+//                "    \"password\": \"$passwordValue\"\n" +
+//                "}";
+//
+//        HttpHelper.post("http://gpstoque-api.herokuapp.com/auth/local", dataPost)
+
+        if (identifierValue == "" || passwordValue == "") {
+            Toast.makeText(context, "Verifique os campos de acesso em branco", Toast.LENGTH_LONG).show()
+            return
+        } else if (identifierValue != "aluno" || passwordValue != "impacta" ) {
+            Toast.makeText(context, "Usuário ou senha incorretos", Toast.LENGTH_LONG).show()
+            return
+        }
+
         // armazenar valor do checkbox
         Prefs.setBoolean("remind", remindLogin.isChecked)
 
@@ -60,14 +75,7 @@ class MainActivity : DebugActivity() {
         intent.putExtra("numero", 10)
 
         // Fazer chamada se o login e senha for igual ao esperado.
-        if(identifierValue == "impacta" && passwordValue == "senha") {
-            startActivityForResult(intent, 1)
-        } else if (identifierValue == "" || passwordValue == "") {
-            Toast.makeText(context, "Verifique os campos de acesso em branco", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(context, "Usuário ou senha estão incorretos!", Toast.LENGTH_LONG).show()
-        }
-
+        startActivityForResult(intent, 1)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

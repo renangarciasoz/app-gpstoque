@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">gpstoque</string>
     <string name="logo_description">Logotipo GrupoGPS</string>
-    <string name="email_input">Insira seu e-mail</string>
-    <string name="password_input">Insira sua senha</string>
+    <string name="email_input">E-MAIL</string>
+    <string name="password_input">SENHA</string>
     <string name="remind_login">Lembrar dados de acesso?</string>
     <string name="btn_login">Entrar</string>
+
+    <string name="action_buscar">Buscar</string>
+    <string name="action_atualizar">Atualizar</string>
+    <string name="action_adicionar">Adicionar</string>
+    <string name="action_config">Configurações</string>
+    <string name="action_remover">Remover</string>
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
 </resources>
