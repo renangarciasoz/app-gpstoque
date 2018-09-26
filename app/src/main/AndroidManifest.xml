@@ -21,8 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".DebugActivity" />
-        <activity android:name=".ApplicationIndex"
+        <activity
+            android:name=".ApplicationIndex"
             android:theme="@style/AppTheme.Toolbar" />
+        <activity android:name=".JWTToken"></activity>
     </application>
 
 </manifest>

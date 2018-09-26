@@ -1,11 +1,27 @@
 package br.com.gpssa.gpstoque
 
-import android.app.Activity
-import android.os.Bundle
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class JWTToken : Activity() {
+class JWTToken: Serializable{
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    @SerializedName("token")
+    @Expose
+
+    private var token: String? = null
+
+    fun JWTToken() {
+
+    }
+
+    fun getToken(): String? {
+        return token
+    }
+
+    fun setToken(token: String) {
+        this.token = token
     }
 }
+
+

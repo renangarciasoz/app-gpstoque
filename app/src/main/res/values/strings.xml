@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">gpstoque</string>
+    <string name="app_name">GPStoque</string>
     <string name="logo_description">Logotipo GrupoGPS</string>
-    <string name="email_input">E-MAIL</string>
-    <string name="password_input">SENHA</string>
+    <string name="email_input">Usuário</string>
+    <string name="password_input">Senha</string>
     <string name="remind_login">Lembrar dados de acesso?</string>
     <string name="btn_login">Entrar</string>
 

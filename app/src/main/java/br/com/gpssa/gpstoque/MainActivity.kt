@@ -36,20 +36,27 @@ class MainActivity : DebugActivity() {
         val identifierValue = identifierLogin.text.toString()
         val passwordValue = passwordLogin.text.toString()
 
-//        val dataPost= "{\n" +
-//                "    \"identifier\": \"$identifierValue\",\n" +
-//                "    \"password\": \"$passwordValue\"\n" +
-//                "}";
-//
-//        HttpHelper.post("http://gpstoque-api.herokuapp.com/auth/local", dataPost)
-
         if (identifierValue == "" || passwordValue == "") {
             Toast.makeText(context, "Verifique os campos de acesso em branco", Toast.LENGTH_LONG).show()
             return
-        } else if (identifierValue != "aluno" || passwordValue != "impacta" ) {
-            Toast.makeText(context, "Usuário ou senha incorretos", Toast.LENGTH_LONG).show()
-            return
         }
+
+        Thread {
+            // Código para procurar iniciar o login
+            // que será executado em segundo plano / Thread separada
+
+            val dataPost= "{\n" +
+                    "    \"identifier\": \"$identifierValue\",\n" +
+                    "    \"password\": \"$passwordValue\"\n" +
+                    "}"
+
+            val login = HttpHelper.post("http://gpstoque-api.herokuapp.com/auth/local", dataPost)
+
+            runOnUiThread {
+                Toast.makeText(context, "$login", Toast.LENGTH_LONG).show()
+            }
+        }.start()
+
 
         // armazenar valor do checkbox
         Prefs.setBoolean("remind", remindLogin.isChecked)
