@@ -41,21 +41,21 @@ class MainActivity : DebugActivity() {
             return
         }
 
-        Thread {
-            // Código para procurar iniciar o login
-            // que será executado em segundo plano / Thread separada
-
-            val dataPost= "{\n" +
-                    "    \"identifier\": \"$identifierValue\",\n" +
-                    "    \"password\": \"$passwordValue\"\n" +
-                    "}"
-
-            val login = HttpHelper.post("http://gpstoque-api.herokuapp.com/auth/local", dataPost)
-
-            runOnUiThread {
-                Toast.makeText(context, "$login", Toast.LENGTH_LONG).show()
-            }
-        }.start()
+//        Thread {
+//            // Código para procurar iniciar o login
+//            // que será executado em segundo plano / Thread separada
+//
+//            val dataPost= "{\n" +
+//                    "    \"identifier\": \"$identifierValue\",\n" +
+//                    "    \"password\": \"$passwordValue\"\n" +
+//                    "}"
+//
+//            val login = HttpHelper.post("https://gpstoque-api.herokuapp.com/auth/local", dataPost)
+//
+//            runOnUiThread {
+//                Toast.makeText(context, "$login", Toast.LENGTH_LONG).show()
+//            }
+//        }.start()
 
 
         // armazenar valor do checkbox

@@ -24,7 +24,11 @@
         <activity
             android:name=".ApplicationIndex"
             android:theme="@style/AppTheme.Toolbar" />
-        <activity android:name=".JWTToken"></activity>
+        <activity android:name=".JWTToken" />
+        <activity
+            android:name=".RequestsActivity"
+            android:label="@string/title_activity_requests" />
+        <activity android:name=".DashboardActivity"></activity>
     </application>
 
 </manifest>

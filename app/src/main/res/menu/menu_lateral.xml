@@ -2,29 +2,55 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_diciplinas"
-            android:icon="@drawable/ic_disciplina_black"
-            android:title="Disciplinas"
+            android:id="@+id/activity_dashboard"
+            android:icon="@drawable/ic_dashboard_black"
+            android:title="Dashboard"
             android:checked="true"/>
-
         <item
-            android:id="@+id/nav_forum"
-            android:icon="@drawable/ic_forum_black"
-            android:title="Fórum" />
-
+            android:id="@+id/activity_requests"
+            android:icon="@drawable/ic_request_black"
+            android:title="Solicitações" />
         <item
-            android:id="@+id/nav_mensagens"
-            android:icon="@drawable/ic_chat_black"
-            android:title="Mensagens" />
-
+            android:id="@+id/nav_devolutions"
+            android:icon="@drawable/ic_devolutions_black"
+            android:title="Devoluções" />
         <item
-            android:id="@+id/nav_localizacao"
-            android:icon="@drawable/ic_local_black"
-            android:title="Localização" />
-
+            android:id="@+id/nav_uniforms"
+            android:icon="@drawable/ic_uniforms_black"
+            android:title="Uniformes" />
         <item
-            android:id="@+id/nav_config"
-            android:icon="@drawable/ic_configuracoes_black"
-            android:title="Configurações" />
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/ic_orders_black"
+            android:title="Pedidos" />
+        <item
+            android:id="@+id/nav_customers"
+            android:icon="@drawable/ic_customers_black"
+            android:title="Clientes" />
+        <item
+            android:id="@+id/nav_providers"
+            android:icon="@drawable/ic_providers_black"
+            android:title="Fornecedores" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_exit_black"
+            android:title="Sair" />
+        <!--NÃO IREI UTILIZAR AGORA-->
+        <!--<item-->
+            <!--android:id="@+id/nav_mensagens"-->
+            <!--android:icon="@drawable/ic_chat_black"-->
+            <!--android:title="Mensagens" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_localizacao"-->
+            <!--android:icon="@drawable/ic_local_black"-->
+            <!--android:title="Localização" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_diciplinas"-->
+            <!--android:icon="@drawable/ic_disciplina_black"-->
+            <!--android:title="Disciplinas"-->
+            <!--android:checked="true"/>-->
+        <!--<item-->
+            <!--android:id="@+id/nav_config"-->
+            <!--android:icon="@drawable/ic_configuracoes_black"-->
+            <!--android:title="Configurações" />-->
     </group>
 </menu>
