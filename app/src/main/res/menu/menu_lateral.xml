@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/activity_dashboard"
+            android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_dashboard_black"
             android:title="Dashboard"
             android:checked="true"/>
         <item
-            android:id="@+id/activity_requests"
+            android:id="@+id/nav_requests"
             android:icon="@drawable/ic_request_black"
             android:title="Solicitações" />
         <item
