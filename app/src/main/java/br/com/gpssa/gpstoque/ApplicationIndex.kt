@@ -45,7 +45,7 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         // alterar título da ActionBar
-        supportActionBar?.title = "Dashboard"
+        supportActionBar?.title = "Uniformes"
 
         // up navigation
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -89,7 +89,7 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
         // parâmetros extras
         intent.putExtra("disciplina", uniform)
         // Disparar notificação
-        NotificationUtil.create(this, 1, intent, "LMSApp", "Você tem nova atividade na ${uniform.nome}")
+        NotificationUtil.create(this, 1, intent, "GPSApp", "Você tem nova atividade na ${uniform.nome}")
     }
 
     // tratamento do evento de clicar em uma uniform
@@ -119,27 +119,27 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
     // para tratar os eventos de clique no menu lateral
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_dashboard -> {
-                supportActionBar?.title = item.title
-            }
-            R.id.nav_requests -> {
-                supportActionBar?.title = item.title
-            }
-            R.id.nav_devolutions -> {
-                supportActionBar?.title = item.title
-            }
+//            R.id.nav_dashboard -> {
+//                supportActionBar?.title = item.title
+//            }
+//            R.id.nav_requests -> {
+//                supportActionBar?.title = item.title
+//            }
+//            R.id.nav_devolutions -> {
+//                supportActionBar?.title = item.title
+//            }
             R.id.nav_uniforms -> {
                 supportActionBar?.title = item.title
             }
-            R.id.nav_orders -> {
-                supportActionBar?.title = item.title
-            }
-            R.id.nav_customers -> {
-                supportActionBar?.title = item.title
-            }
-            R.id.nav_providers -> {
-                supportActionBar?.title = item.title
-            }
+//            R.id.nav_orders -> {
+//                supportActionBar?.title = item.title
+//            }
+//            R.id.nav_customers -> {
+//                supportActionBar?.title = item.title
+//            }
+//            R.id.nav_providers -> {
+//                supportActionBar?.title = item.title
+//            }
             R.id.nav_exit -> {
                 val returnIntent = Intent()
                 returnIntent.putExtra("result","")

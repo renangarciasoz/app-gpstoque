@@ -8,7 +8,7 @@ import android.arch.persistence.room.Query
 @Dao
 interface UniformDAO {
     @Query("SELECT * FROM uniform where id = :id")
-    fun getById(id: Long) : Uniform?
+    fun getById(id: String) : Uniform?
 
     @Query("SELECT * FROM uniform")
     fun findAll(): List<Uniform>

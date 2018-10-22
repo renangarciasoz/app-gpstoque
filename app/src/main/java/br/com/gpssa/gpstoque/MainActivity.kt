@@ -41,23 +41,6 @@ class MainActivity : DebugActivity() {
             return
         }
 
-//        Thread {
-//            // Código para procurar iniciar o login
-//            // que será executado em segundo plano / Thread separada
-//
-//            val dataPost= "{\n" +
-//                    "    \"identifier\": \"$identifierValue\",\n" +
-//                    "    \"password\": \"$passwordValue\"\n" +
-//                    "}"
-//
-//            val login = HttpHelper.post("https://gpstoque-api.herokuapp.com/auth/local", dataPost)
-//
-//            runOnUiThread {
-//                Toast.makeText(context, "$login", Toast.LENGTH_LONG).show()
-//            }
-//        }.start()
-
-
         // armazenar valor do checkbox
         Prefs.setBoolean("remind", remindLogin.isChecked)
 
@@ -78,11 +61,26 @@ class MainActivity : DebugActivity() {
         params.putString("nome", "impacta")
         intent.putExtras(params)
 
-        // enviar parâmetros simplificado
-        intent.putExtra("numero", 10)
+        Thread {
+            // Código para procurar iniciar o login
+            // que será executado em segundo plano / Thread separada
 
-        // Fazer chamada se o login e senha for igual ao esperado.
-        startActivityForResult(intent, 1)
+            val dataPost= "{\n" +
+                    "    \"identifier\": \"$identifierValue\",\n" +
+                    "    \"password\": \"$passwordValue\"\n" +
+                    "}"
+
+            val login = HttpHelper.post("https://gpstoque-api.herokuapp.com/auth/local", dataPost)
+
+            runOnUiThread {
+                // enviar parâmetros simplificado
+                intent.putExtra("numero", 10)
+
+                // Fazer chamada se o login e senha for igual ao esperado.
+                startActivityForResult(intent, 1)
+
+            }
+        }.start()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -10,7 +10,7 @@ import java.io.Serializable
 class Uniform : Serializable {
 
     @PrimaryKey
-    var id:Long = 0
+    var id:String = "0"
     var nome = ""
     var ementa = ""
     var foto = ""

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_dashboard"
-            android:icon="@drawable/ic_dashboard_black"
-            android:title="Dashboard"
-            android:checked="true"/>
-        <item
-            android:id="@+id/nav_requests"
-            android:icon="@drawable/ic_request_black"
-            android:title="Solicitações" />
-        <item
-            android:id="@+id/nav_devolutions"
-            android:icon="@drawable/ic_devolutions_black"
-            android:title="Devoluções" />
+        <!--<item-->
+            <!--android:id="@+id/nav_dashboard"-->
+            <!--android:icon="@drawable/ic_dashboard_black"-->
+            <!--android:title="Dashboard"-->
+            <!--android:checked="true"/>-->
+        <!--<item-->
+            <!--android:id="@+id/nav_requests"-->
+            <!--android:icon="@drawable/ic_request_black"-->
+            <!--android:title="Solicitações" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_devolutions"-->
+            <!--android:icon="@drawable/ic_devolutions_black"-->
+            <!--android:title="Devoluções" />-->
         <item
             android:id="@+id/nav_uniforms"
             android:icon="@drawable/ic_uniforms_black"
             android:title="Uniformes" />
-        <item
-            android:id="@+id/nav_orders"
-            android:icon="@drawable/ic_orders_black"
-            android:title="Pedidos" />
-        <item
-            android:id="@+id/nav_customers"
-            android:icon="@drawable/ic_customers_black"
-            android:title="Clientes" />
-        <item
-            android:id="@+id/nav_providers"
-            android:icon="@drawable/ic_providers_black"
-            android:title="Fornecedores" />
+        <!--<item-->
+            <!--android:id="@+id/nav_orders"-->
+            <!--android:icon="@drawable/ic_orders_black"-->
+            <!--android:title="Pedidos" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_customers"-->
+            <!--android:icon="@drawable/ic_customers_black"-->
+            <!--android:title="Clientes" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_providers"-->
+            <!--android:icon="@drawable/ic_providers_black"-->
+            <!--android:title="Fornecedores" />-->
         <item
             android:id="@+id/nav_exit"
             android:icon="@drawable/ic_exit_black"

@@ -12,7 +12,7 @@ import java.net.URL
 object UniformService {
 
     //TROQUE PELO IP DE ONDE ESTÁ O WS
-    val host = "http://gpstoque-api.herokuapp.com"
+    val host = "https://gpstoque-api.herokuapp.com"
     val TAG = "WS_GPSApp"
 
     fun getUniforms (context: Context): List<Uniform> {
@@ -34,7 +34,7 @@ object UniformService {
 
     }
 
-    fun getUniform (context: Context, id: Long): Uniform? {
+    fun getUniform (context: Context, id: String): Uniform? {
 
         if (AndroidUtils.isInternetDisponivel(context)) {
             val url = "$host/uniform/${id}"

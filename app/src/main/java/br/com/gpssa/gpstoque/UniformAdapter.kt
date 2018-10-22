@@ -18,13 +18,13 @@ class UniformAdapter (
     // ViewHolder com os elemetos da tela
     class UniformsViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val cardNome: TextView
-        val cardImg : ImageView
+//        val cardImg : ImageView
         var cardProgress: ProgressBar
         var cardView: CardView
 
         init {
             cardNome = view.findViewById<TextView>(R.id.cardNome)
-            cardImg = view.findViewById<ImageView>(R.id.cardImg)
+//            cardImg = view.findViewById<ImageView>(R.id.cardImg)
             cardProgress = view.findViewById<ProgressBar>(R.id.cardProgress)
             cardView = view.findViewById<CardView>(R.id.card_uniforms)
 
@@ -50,7 +50,7 @@ class UniformAdapter (
     // bind para atualizar Views com os dados
 
     override fun onBindViewHolder(holder: UniformsViewHolder, position: Int) {
-        val context = holder.itemView.context
+//        val context = holder.itemView.context
 
         // recuperar objeto uniform
         val uniform = uniforms[position]
@@ -60,17 +60,17 @@ class UniformAdapter (
         holder.cardNome.text = uniform.nome
         holder.cardProgress.visibility = View.VISIBLE
 
-        // download da imagem
-        Picasso.with(context).load(uniform.foto).fit().into(holder.cardImg,
-                object: com.squareup.picasso.Callback{
-                    override fun onSuccess() {
-                        holder.cardProgress.visibility = View.GONE
-                    }
-
-                    override fun onError() {
-                        holder.cardProgress.visibility = View.GONE
-                    }
-                })
+//        // download da imagem
+//        Picasso.with(context).load(uniform.foto).fit().into(holder.cardImg,
+//                object: com.squareup.picasso.Callback{
+//                    override fun onSuccess() {
+//                        holder.cardProgress.visibility = View.GONE
+//                    }
+//
+//                    override fun onError() {
+//                        holder.cardProgress.visibility = View.GONE
+//                    }
+//                })
 
         // adiciona evento de clique
         holder.itemView.setOnClickListener {onClick(uniform)}
