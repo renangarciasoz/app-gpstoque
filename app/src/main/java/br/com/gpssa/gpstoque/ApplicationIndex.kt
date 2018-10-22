@@ -3,7 +3,9 @@ package br.com.gpssa.gpstoque
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -16,9 +18,8 @@ import android.widget.Toast
 class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val context: Context get() = this
-
-    //    private var disciplinas = listOf<Disciplina>()
-    var recyclerDisciplinas: RecyclerView? = null
+    private var uniforms = listOf<Uniform>()
+    var recyclerUniforms: RecyclerView? = null
     private var REQUEST_CADASTRO = 1
     private var REQUEST_REMOVE= 2
 
@@ -49,10 +50,54 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
         // up navigation
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initMenu()
+
+        // configurar cardview
+        recyclerUniforms = findViewById<RecyclerView>(R.id.recyclerUniforms)
+        recyclerUniforms?.layoutManager = LinearLayoutManager(context)
+        recyclerUniforms?.itemAnimator = DefaultItemAnimator()
+        recyclerUniforms?.setHasFixedSize(true)
+
     }
 
     override fun onResume() {
         super.onResume()
+
+        taskUniforms()
+    }
+
+    fun taskUniforms() {
+
+        // Criar a Thread
+        Thread {
+            // Código para procurar as uniforms
+            // que será executado em segundo plano / Thread separada
+            this.uniforms = UniformService.getUniforms(context)
+            runOnUiThread {
+                // Código para atualizar a UI com a lista de uniforms
+                recyclerUniforms?.adapter = UniformAdapter(this.uniforms) { onClickUniform(it) }
+                // enviar notificação
+                enviaNotificacao(this.uniforms.get(0))
+
+            }
+        }.start()
+
+    }
+
+    fun enviaNotificacao(uniform: Uniform) {
+        // Intent para abrir tela quando clicar na notificação
+        val intent = Intent(this, UniformActivity::class.java)
+        // parâmetros extras
+        intent.putExtra("disciplina", uniform)
+        // Disparar notificação
+        NotificationUtil.create(this, 1, intent, "LMSApp", "Você tem nova atividade na ${uniform.nome}")
+    }
+
+    // tratamento do evento de clicar em uma uniform
+    fun onClickUniform(uniform: Uniform) {
+        Toast.makeText(context, "Clicou uniform ${uniform.nome}", Toast.LENGTH_SHORT).show()
+        val intent = Intent(context, UniformActivity::class.java)
+        intent.putExtra("uniform", uniform)
+        startActivityForResult(intent, REQUEST_REMOVE)
     }
 
     // configuraçao do navigation Drawer com a toolbar
@@ -74,10 +119,10 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
     // para tratar os eventos de clique no menu lateral
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.activity_dashboard -> {
+            R.id.nav_dashboard -> {
                 supportActionBar?.title = item.title
             }
-            R.id.activity_requests -> {
+            R.id.nav_requests -> {
                 supportActionBar?.title = item.title
             }
             R.id.nav_devolutions -> {
@@ -110,11 +155,11 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // método sobrescrito para inflar o menu na Actionbar
+    @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         // infla o menu com os botões da ActionBar
         menuInflater.inflate(R.menu.menu_main, menu)
-
         // vincular evento de buscar
         (menu?.findItem(R.id.action_buscar)?.actionView as SearchView).setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -124,7 +169,7 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                Toast.makeText(context, "$query", Toast.LENGTH_LONG).show()
+                // ação  quando terminou de buscar e enviou
                 return false
             }
 
@@ -145,7 +190,7 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
             Toast.makeText(context, "Botão de configuracoes", Toast.LENGTH_LONG).show()
         } else if (id == R.id.action_adicionar) {
             // iniciar activity de cadastro
-//          val intent = Intent(context, DisciplinaCadastroActivity::class.java)
+            val intent = Intent(context, UniformCadastroActivity::class.java)
             startActivityForResult(intent, REQUEST_CADASTRO)
         }
         // botão up navigation
@@ -154,11 +199,11 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
         }
         return super.onOptionsItemSelected(item)
     }
-
+    // esperar o retorno do cadastro da uniform
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 1) {
-            val result = data?.getStringExtra("result")
-            Toast.makeText(context, "$result", Toast.LENGTH_LONG).show()
+        if (requestCode == REQUEST_CADASTRO || requestCode == REQUEST_REMOVE ) {
+            // atualizar lista de uniforms
+            taskUniforms()
         }
     }
 }
