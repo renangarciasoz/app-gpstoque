@@ -8,7 +8,15 @@
     tools:context=".UniformCadastroActivity">
 
     <EditText
-        android:id="@+id/nomeUniform"
+        android:id="@+id/imgUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="URL Foto"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/nameUniform"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -16,28 +24,20 @@
         android:inputType="textPersonName"/>
 
     <EditText
-        android:id="@+id/ementaUniform"
+        android:id="@+id/descriptionUniform"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:ems="10"
-        android:hint="Ementa"
+        android:hint="Descrição"
         android:inputType="textMultiLine" />
 
     <EditText
-        android:id="@+id/professorUniform"
+        android:id="@+id/amountUniform"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Professor"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/urlFoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="URL Foto"
-        android:inputType="textPersonName"/>
+        android:hint="Quantidade"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/salvarUniform"

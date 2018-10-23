@@ -69,7 +69,7 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
 
         // Criar a Thread
         Thread {
-            // Código para procurar as uniforms
+            // Código para procurar os uniforms
             // que será executado em segundo plano / Thread separada
             this.uniforms = UniformService.getUniforms(context)
             runOnUiThread {
@@ -89,12 +89,12 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
         // parâmetros extras
         intent.putExtra("disciplina", uniform)
         // Disparar notificação
-        NotificationUtil.create(this, 1, intent, "GPSApp", "Você tem nova atividade na ${uniform.nome}")
+        NotificationUtil.create(this, 1, intent, "GPSApp", "Você tem nova atividade na ${uniform.name}")
     }
 
     // tratamento do evento de clicar em uma uniform
     fun onClickUniform(uniform: Uniform) {
-        Toast.makeText(context, "Clicou uniform ${uniform.nome}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Clicou uniform ${uniform.name}", Toast.LENGTH_SHORT).show()
         val intent = Intent(context, UniformActivity::class.java)
         intent.putExtra("uniform", uniform)
         startActivityForResult(intent, REQUEST_REMOVE)
@@ -191,6 +191,7 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
         } else if (id == R.id.action_adicionar) {
             // iniciar activity de cadastro
             val intent = Intent(context, UniformCadastroActivity::class.java)
+            intent.putExtra("numero", uniforms.size)
             startActivityForResult(intent, REQUEST_CADASTRO)
         }
         // botão up navigation

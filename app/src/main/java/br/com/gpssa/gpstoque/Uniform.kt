@@ -10,14 +10,15 @@ import java.io.Serializable
 class Uniform : Serializable {
 
     @PrimaryKey
-    var id:String = "0"
-    var nome = ""
-    var ementa = ""
-    var foto = ""
-    var professor = ""
+    var _id:String? = null
+    var code:Int = 0
+    var name = ""
+    var description = ""
+    var imgUrl = ""
+    var amount = 0
 
     override fun toString(): String {
-        return "Uniform(nome='$nome')"
+        return "Uniform(name='$name')"
     }
 
     fun toJson(): String {

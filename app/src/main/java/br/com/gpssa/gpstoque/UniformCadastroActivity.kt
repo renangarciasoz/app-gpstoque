@@ -8,17 +8,22 @@ import kotlinx.android.synthetic.main.login.*
 
 class UniformCadastroActivity : AppCompatActivity() {
 
+    private var uniforms = listOf<Uniform>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro_uniform)
-        setTitle("Nova Uniform")
+        setTitle("Novo Uniforme")
+
+        val numero = intent.getIntExtra("nome",0)
 
         salvarUniform.setOnClickListener {
             val uniform = Uniform()
-            uniform.nome = nomeUniform.text.toString()
-            uniform.ementa = ementaUniform.text.toString()
-            uniform.professor = professorUniform.text.toString()
-            uniform.foto = urlFoto.text.toString()
+            uniform.code = numero + 1
+            uniform.name = nameUniform.text.toString()
+            uniform.description = descriptionUniform.text.toString()
+            uniform.amount = amountUniform.text.toString().toInt()
+            uniform.imgUrl = imgUrl.text.toString()
 
             taskAtualizar(uniform)
         }

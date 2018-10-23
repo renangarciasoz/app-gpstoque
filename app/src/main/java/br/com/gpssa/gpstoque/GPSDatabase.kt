@@ -4,7 +4,7 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 
 // anotação define a lista de entidades e a versão do banco
-@Database(entities = arrayOf(Uniform::class), version = 1)
+@Database(entities = arrayOf(Uniform::class), version = 3)
 abstract class GPSDatabase: RoomDatabase() {
     abstract fun uniformDAO(): UniformDAO
 }

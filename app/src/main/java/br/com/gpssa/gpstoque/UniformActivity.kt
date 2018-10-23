@@ -33,16 +33,16 @@ class UniformActivity : DebugActivity() {
         setSupportActionBar(toolbar)
 
         // alterar título da ActionBar
-        supportActionBar?.title = uniform?.nome
+        supportActionBar?.title = uniform?.name
 
         // up navigation
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // atualizar dados do carro
         var texto = findViewById<TextView>(R.id.nomeUniform)
-        texto.text = uniform?.nome
+        texto.text = uniform?.name
         var imagem = findViewById<ImageView>(R.id.imagemUniform)
-        Picasso.with(this).load(uniform?.foto).fit().into(imagem,
+        Picasso.with(this).load(uniform?.imgUrl).fit().into(imagem,
                 object: com.squareup.picasso.Callback{
                     override fun onSuccess() {}
 

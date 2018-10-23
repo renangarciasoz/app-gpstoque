@@ -34,20 +34,21 @@ object UniformService {
 
     }
 
-    fun getUniform (context: Context, id: String): Uniform? {
+    fun getUniform (context: Context, _id: String): Uniform? {
 
-        if (AndroidUtils.isInternetDisponivel(context)) {
-            val url = "$host/uniform/${id}"
+//        if (AndroidUtils.isInternetDisponivel(context)) {
+            val url = "$host/uniform/${_id}"
             val json = HttpHelper.get(url)
             val uniform = parserJson<Uniform>(json)
 
             return uniform
-        } else {
-            val dao = DatabaseManager.getUniformDAO()
-            val uniform = dao.getById(id)
-            return uniform
-        }
+//        }
 
+//        else {
+//            val dao = DatabaseManager.getUniformDAO()
+//            val uniform = dao.getById(_id)
+//            return uniform
+//        }
     }
 
     fun save(uniform: Uniform): Response {
@@ -68,12 +69,12 @@ object UniformService {
 
     fun existeUniform(uniform: Uniform): Boolean {
         val dao = DatabaseManager.getUniformDAO()
-        return dao.getById(uniform.id) != null
+        return dao.getById(uniform.code) != null
     }
 
     fun delete(uniform: Uniform): Response {
         if (AndroidUtils.isInternetDisponivel(GPSApplication.getInstance().applicationContext)) {
-            val url = "$host/uniform/${uniform.id}"
+            val url = "$host/uniform/${uniform._id}"
             val json = HttpHelper.delete(url)
 
             return parserJson(json)
