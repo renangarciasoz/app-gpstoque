@@ -8,14 +8,12 @@ import kotlinx.android.synthetic.main.login.*
 
 class UniformCadastroActivity : AppCompatActivity() {
 
-    private var uniforms = listOf<Uniform>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro_uniform)
         setTitle("Novo Uniforme")
 
-        val numero = intent.getIntExtra("nome",0)
+        val numero = intent.getIntExtra("numero",0)
 
         salvarUniform.setOnClickListener {
             val uniform = Uniform()

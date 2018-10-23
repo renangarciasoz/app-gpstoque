@@ -71,7 +71,7 @@ class UniformActivity : DebugActivity() {
                     .setPositiveButton("Sim") {
                         dialog, which ->
                             dialog.dismiss()
-                            taskExcluir()
+//                            taskExcluir()
                     }.setNegativeButton("Não") {
                         dialog, which -> dialog.dismiss()
                     }.create().show()
@@ -83,17 +83,17 @@ class UniformActivity : DebugActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun taskExcluir() {
-        if (this.uniform != null && this.uniform is Uniform) {
+//    private fun taskExcluir() {
+//        if (this.uniform != null && this.uniform is Uniform) {
             // Thread para remover a uniform
-            Thread {
-                UniformService.delete(this.uniform as Uniform)
-                runOnUiThread {
+//            Thread {
+                //                UniformService.delete(this.uniform as Uniform)
+//                runOnUiThread {
                     // após remover, voltar para activity anterior
-                    finish()
-                }
-            }.start()
-        }
-    }
+//                    finish()
+//                }
+//            }.start()
+//        }
+//    }
 
 }

@@ -10,7 +10,6 @@ import java.io.Serializable
 class Uniform : Serializable {
 
     @PrimaryKey
-    var _id:String? = null
     var code:Int = 0
     var name = ""
     var description = ""

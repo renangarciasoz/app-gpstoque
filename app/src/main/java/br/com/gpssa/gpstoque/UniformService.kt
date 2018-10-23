@@ -34,21 +34,19 @@ object UniformService {
 
     }
 
-    fun getUniform (context: Context, _id: String): Uniform? {
+    fun getUniform (context: Context, _id: String, code: Int): Uniform? {
 
-//        if (AndroidUtils.isInternetDisponivel(context)) {
+        if (AndroidUtils.isInternetDisponivel(context)) {
             val url = "$host/uniform/${_id}"
             val json = HttpHelper.get(url)
             val uniform = parserJson<Uniform>(json)
 
             return uniform
-//        }
-
-//        else {
-//            val dao = DatabaseManager.getUniformDAO()
-//            val uniform = dao.getById(_id)
-//            return uniform
-//        }
+        } else {
+            val dao = DatabaseManager.getUniformDAO()
+            val uniform = dao.getById(code)
+            return uniform
+        }
     }
 
     fun save(uniform: Uniform): Response {
@@ -72,19 +70,19 @@ object UniformService {
         return dao.getById(uniform.code) != null
     }
 
-    fun delete(uniform: Uniform): Response {
-        if (AndroidUtils.isInternetDisponivel(GPSApplication.getInstance().applicationContext)) {
-            val url = "$host/uniform/${uniform._id}"
-            val json = HttpHelper.delete(url)
-
-            return parserJson(json)
-        } else {
-            val dao = DatabaseManager.getUniformDAO()
-            dao.delete(uniform)
-            return Response(status = "OK", msg = "Dados salvos localmente")
-        }
-
-    }
+//    fun delete(uniform: Uniform): Response {
+//        if (AndroidUtils.isInternetDisponivel(GPSApplication.getInstance().applicationContext)) {
+//            val url = "$host/uniform/${uniform._id}"
+//            val json = HttpHelper.delete(url)
+//
+//            return parserJson(json)
+//        } else {
+//            val dao = DatabaseManager.getUniformDAO()
+//            dao.delete(uniform)
+//            return Response(status = "OK", msg = "Dados salvos localmente")
+//        }
+//
+//    }
 
     inline fun <reified T> parserJson(json: String): T {
         val type = object : TypeToken<T>(){}.type
