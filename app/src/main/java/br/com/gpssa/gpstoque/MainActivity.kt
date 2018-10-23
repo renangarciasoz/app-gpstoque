@@ -87,7 +87,7 @@ class MainActivity : DebugActivity() {
 //
 //            }
 //        }.start()
-//    }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 1) {
