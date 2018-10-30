@@ -73,11 +73,12 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
             // que será executado em segundo plano / Thread separada
             this.uniforms = UniformService.getUniforms(context)
             runOnUiThread {
+
                 // Código para atualizar a UI com a lista de uniforms
                 recyclerUniforms?.adapter = UniformAdapter(this.uniforms) { onClickUniform(it) }
+
                 // enviar notificação
                 enviaNotificacao(this.uniforms.get(0))
-
             }
         }.start()
 
@@ -87,7 +88,7 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
         // Intent para abrir tela quando clicar na notificação
         val intent = Intent(this, UniformActivity::class.java)
         // parâmetros extras
-        intent.putExtra("disciplina", uniform)
+        intent.putExtra("uniform", uniform)
         // Disparar notificação
         NotificationUtil.create(this, 1, intent, "GPSApp", "Você tem nova atividade na ${uniform.name}")
     }

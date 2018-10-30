@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "582487497574",
+    "firebase_url": "https://app-gpstoque.firebaseio.com",
+    "project_id": "app-gpstoque",
+    "storage_bucket": "app-gpstoque.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582487497574:android:0f7dac5a68915111",
+        "android_client_info": {
+          "package_name": "br.com.gpssa.gpstoque"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582487497574-4tf0j9sb9bug12uanhjhm4tovgg8lkgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoiMVvXS6NnjV8k-WUI0kAekfjb1r7BEk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

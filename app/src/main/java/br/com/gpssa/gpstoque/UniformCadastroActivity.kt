@@ -1,5 +1,6 @@
 package br.com.gpssa.gpstoque
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -30,7 +31,11 @@ class UniformCadastroActivity : AppCompatActivity() {
     private fun taskAtualizar(uniform: Uniform) {
         // Thread para salvar a discilpina
         Thread {
-            UniformService.save(uniform)
+            if (AndroidUtils.isInternetDisponivel(GPSApplication.getInstance().applicationContext)) {
+                UniformService.save(uniform)
+            } else {
+                UniformService.saveOffline(uniform)
+            }
             runOnUiThread {
                 // após cadastrar, voltar para activity anterior
                 finish()

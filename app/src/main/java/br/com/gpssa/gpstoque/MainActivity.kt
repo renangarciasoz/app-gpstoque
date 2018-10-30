@@ -3,6 +3,7 @@ package br.com.gpssa.gpstoque
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.login.*
@@ -93,6 +94,30 @@ class MainActivity : DebugActivity() {
         if (requestCode == 1) {
             val result = data?.getStringExtra("result")
             Toast.makeText(context, "$result", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // abrir a disciplina caso clique na notificação com o aplicativo fechado
+        abrirUniform()
+        // mostrar no log o tokem do firebase
+        Log.d("firebase", "Firebase Token: ${Prefs.getString("FB_TOKEN")}")
+    }
+
+    fun abrirUniform() {
+        // verificar se existe id do uniform na intent
+        if (intent.hasExtra("uniform_Id")) {
+            Thread {
+                var uniformCode = intent.getStringExtra("uniformCode")?.toInt()!!
+                var uniformId = intent.getStringExtra("uniform_Id")?.toString()!!
+                val uniform = UniformService.getUniform(this, uniformId, uniformCode)
+                runOnUiThread {
+                    val intentUniform = Intent(this, UniformActivity::class.java)
+                    intentUniform.putExtra("uniform", uniform)
+                    startActivity(intentUniform)
+                }
+            }.start()
         }
     }
 }
