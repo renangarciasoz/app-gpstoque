@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@drawable/fundo_menu"
+    android:background="@color/colorPrimary"
     android:layout_gravity="bottom"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:padding="16dp"
@@ -12,16 +12,16 @@
 
     <ImageView
         android:id="@+id/imagemuser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher_round"
-        android:paddingTop="16dp"/>
+        android:layout_width="86dp"
+        android:layout_height="91dp"
+        android:paddingTop="16dp"
+        app:srcCompat="@drawable/user" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nome Usuário"
         android:paddingTop="16dp"
+        android:text="Nome do usuário"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>

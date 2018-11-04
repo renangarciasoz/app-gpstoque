@@ -25,10 +25,6 @@
             android:name=".ApplicationIndex"
             android:theme="@style/AppTheme.Toolbar" />
         <activity
-            android:name=".RequestsActivity"
-            android:label="@string/title_activity_requests" />
-        <activity android:name=".DashboardActivity" />
-        <activity
             android:name=".UniformActivity"
             android:parentActivityName=".ApplicationIndex"
             android:theme="@style/AppTheme.Toolbar" />

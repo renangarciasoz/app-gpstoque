@@ -38,9 +38,16 @@ class UniformActivity : DebugActivity() {
         // up navigation
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // atualizar dados do carro
-        var texto = findViewById<TextView>(R.id.nomeUniform)
-        texto.text = uniform?.name
+        // atualizar dados do uniforme
+        var name = findViewById<TextView>(R.id.nameUniformInfo)
+        name.text = uniform?.name
+
+        var description = findViewById<TextView>(R.id.descriptionUniformInfo)
+        description.text = uniform?.description
+
+        var amount = findViewById<TextView>(R.id.amountUniformInfo)
+        amount.text = uniform?.amount.toString()
+
         var imagem = findViewById<ImageView>(R.id.imagemUniform)
         Picasso.with(this).load(uniform?.imgUrl).fit().into(imagem,
                 object: com.squareup.picasso.Callback{

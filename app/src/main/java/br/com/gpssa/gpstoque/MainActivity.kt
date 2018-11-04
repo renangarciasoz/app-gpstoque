@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import br.com.gpssa.gpstoque.UniformService.parserJson
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.login.*
 
 class MainActivity : DebugActivity() {
@@ -54,40 +56,32 @@ class MainActivity : DebugActivity() {
             Prefs.setString("remindPassword", "")
         }
 
-        // criar intent
-        val intent = Intent(context, ApplicationIndex::class.java)
+        progressBar.visibility = View.VISIBLE
 
-        // colocar parâmetros para a mensagem(opcional)
-        val params = Bundle()
-        params.putString("nome", "impacta")
-        intent.putExtras(params)
+        Thread {
+            // Código para procurar iniciar o login
+            // que será executado em segundo plano / Thread separada
 
-        // enviar parâmetros simplificado
-        intent.putExtra("numero", 10)
+            val dataPost= "{\n" +
+                    "    \"identifier\": \"$identifierValue\",\n" +
+                    "    \"password\": \"$passwordValue\"\n" +
+                    "}"
 
-        // Fazer chamada se o login e senha for igual ao esperado.
-        startActivityForResult(intent, 1)
+            val json = HttpHelper.post("https://gpstoque-api.herokuapp.com/auth/local", dataPost)
 
-//        Thread {
-//            // Código para procurar iniciar o login
-//            // que será executado em segundo plano / Thread separada
-//
-//            val dataPost= "{\n" +
-//                    "    \"identifier\": \"$identifierValue\",\n" +
-//                    "    \"password\": \"$passwordValue\"\n" +
-//                    "}"
-//
-//            val login = HttpHelper.post("https://gpstoque-api.herokuapp.com/auth/local", dataPost)
-//
-//            runOnUiThread {
-//                // enviar parâmetros simplificado
-//                intent.putExtra("numero", 10)
-//
-//               // Fazer chamada se o login e senha for igual ao esperado.
-//                startActivityForResult(intent, 1)
-//
-//            }
-//        }.start()
+            // criar intent
+            val intent = Intent(context, ApplicationIndex::class.java)
+
+            runOnUiThread {
+                progressBar.visibility = View.INVISIBLE
+
+                // enviar parâmetros simplificado
+                intent.putExtra("nome", "Fulano(a)")
+
+                // Fazer chamada se o login e senha for igual ao esperado.
+                startActivityForResult(intent, 1)
+            }
+        }.start()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

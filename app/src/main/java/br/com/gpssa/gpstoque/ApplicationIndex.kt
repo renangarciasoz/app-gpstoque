@@ -27,18 +27,10 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_application_index)
 
-        // acessar parametros da intnet
-        // intent é um atributo herdado de Activity
-        val args:Bundle? = intent.extras
-
         // recuperar o parâmetro do tipo String
-        val nome = args?.getString("nome")
+        val nome = intent.getStringExtra("nome")
 
-        // recuperar parâmetro simplificado
-        val numero = intent.getIntExtra("nome",0)
-
-        Toast.makeText(context, "Parâmetro: $nome", Toast.LENGTH_LONG).show()
-        Toast.makeText(context, "Numero: $numero", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Seja bem vindo(a) $nome", Toast.LENGTH_LONG).show()
 
         // colocar toolbar
         var toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -69,6 +61,7 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
 
         // Criar a Thread
         Thread {
+
             // Código para procurar os uniforms
             // que será executado em segundo plano / Thread separada
             this.uniforms = UniformService.getUniforms(context)
@@ -85,10 +78,13 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun enviaNotificacao(uniform: Uniform) {
+
         // Intent para abrir tela quando clicar na notificação
         val intent = Intent(this, UniformActivity::class.java)
+
         // parâmetros extras
         intent.putExtra("uniform", uniform)
+
         // Disparar notificação
         NotificationUtil.create(this, 1, intent, "GPSApp", "Você tem nova atividade na ${uniform.name}")
     }
@@ -120,30 +116,12 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
     // para tratar os eventos de clique no menu lateral
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-//            R.id.nav_dashboard -> {
-//                supportActionBar?.title = item.title
-//            }
-//            R.id.nav_requests -> {
-//                supportActionBar?.title = item.title
-//            }
-//            R.id.nav_devolutions -> {
-//                supportActionBar?.title = item.title
-//            }
             R.id.nav_uniforms -> {
                 supportActionBar?.title = item.title
             }
-//            R.id.nav_orders -> {
-//                supportActionBar?.title = item.title
-//            }
-//            R.id.nav_customers -> {
-//                supportActionBar?.title = item.title
-//            }
-//            R.id.nav_providers -> {
-//                supportActionBar?.title = item.title
-//            }
             R.id.nav_exit -> {
                 val returnIntent = Intent()
-                returnIntent.putExtra("result","")
+                returnIntent.putExtra("result","Você finalizou sua sessão")
                 setResult(Activity.RESULT_OK,returnIntent)
                 finish()
             }
@@ -161,15 +139,18 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
 
         // infla o menu com os botões da ActionBar
         menuInflater.inflate(R.menu.menu_main, menu)
+
         // vincular evento de buscar
         (menu?.findItem(R.id.action_buscar)?.actionView as SearchView).setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
+
                 // ação enquanto está digitando
                 return false
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
+
                 // ação  quando terminou de buscar e enviou
                 return false
             }
@@ -179,31 +160,43 @@ class ApplicationIndex : DebugActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
         // id do item clicado
         val id = item?.itemId
+
         // verificar qual item foi clicado e mostrar a mensagem Toast na tela
         // a comparação é feita com o recurso de id definido no xml
         if  (id == R.id.action_buscar) {
             Toast.makeText(context, "Botão de buscar", Toast.LENGTH_LONG).show()
-        } else if (id == R.id.action_atualizar) {
+        }
+
+        else if (id == R.id.action_atualizar) {
             Toast.makeText(context, "Botão de atualizar", Toast.LENGTH_LONG).show()
-        } else if (id == R.id.action_config) {
+        }
+
+        else if (id == R.id.action_config) {
             Toast.makeText(context, "Botão de configuracoes", Toast.LENGTH_LONG).show()
-        } else if (id == R.id.action_adicionar) {
+        }
+
+        else if (id == R.id.action_adicionar) {
             // iniciar activity de cadastro
             val intent = Intent(context, UniformCadastroActivity::class.java)
             intent.putExtra("numero", uniforms.size)
             startActivityForResult(intent, REQUEST_CADASTRO)
         }
+
         // botão up navigation
         else if (id == android.R.id.home) {
             finish()
         }
+
         return super.onOptionsItemSelected(item)
     }
+
     // esperar o retorno do cadastro da uniform
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CADASTRO || requestCode == REQUEST_REMOVE ) {
+
             // atualizar lista de uniforms
             taskUniforms()
         }
